@@ -38,6 +38,8 @@ public class RadiologistServiceImpl implements RadiologistService {
         radiologist.setName(radiologistDto.getName());
         radiologist.setUsername((radiologistDto.getUsername()));
         radiologist.setEmail(radiologistDto.getEmail());
+        radiologist.setType(radiologistDto.getType());
+        radiologist.setContactNumber(radiologistDto.getContactNumber());
 
         Radiologist updatedRadiologist = this.radiologistRepo.save(radiologist);
 

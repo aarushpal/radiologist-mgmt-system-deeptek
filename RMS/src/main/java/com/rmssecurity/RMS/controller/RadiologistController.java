@@ -4,6 +4,9 @@ package com.rmssecurity.RMS.controller;
 import com.rmssecurity.RMS.config.AppConstants;
 import com.rmssecurity.RMS.dto.RadiologistDto;
 import com.rmssecurity.RMS.dto.RadiologistResponse;
+import com.rmssecurity.RMS.entity.Radiologist;
+import com.rmssecurity.RMS.exception.ResourceNotFoundException;
+import com.rmssecurity.RMS.repository.RadiologistRepo;
 import com.rmssecurity.RMS.service.RadiologistService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = "http://localhost:3000/")
 @RequestMapping("/api/radiologists")
 public class RadiologistController {
 
@@ -32,6 +35,26 @@ public class RadiologistController {
         RadiologistDto createRadiologistDto = this.radiologistService.createRadiologist(radiologistDto);
         return new ResponseEntity<>(createRadiologistDto, HttpStatus.CREATED);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<RadiologistDto> updateRadiologist(@Valid @RequestBody RadiologistDto radiologistDto, @PathVariable long id)
+    {
+        RadiologistDto updatedRadiologistDto = this.radiologistService.updateRadiologist(radiologistDto, id);
+        return new ResponseEntity<>(updatedRadiologistDto, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteRadiologist(@PathVariable long id) {
+        try {
+            this.radiologistService.deleteRadiologist(id);
+            return ResponseEntity.status(HttpStatus.OK).body("Radiologist deleted with ID: " + id);
+        } catch (ResourceNotFoundException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Radiologist not found with ID: " + id);
+        }
+    }
+
+
 
     @GetMapping("/")
     public ResponseEntity<RadiologistResponse> getAllRadiologists(
