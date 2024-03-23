@@ -1,34 +1,28 @@
 package com.rmssecurity.RMS.controller;
 
-import com.rmssecurity.RMS.dto.ReqRes;
-import com.rmssecurity.RMS.entity.Product;
-import com.rmssecurity.RMS.repository.ProductRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AdminUsers {
 
-    @Autowired
-    private ProductRepo productRepo;
+//    @Autowired
+//    private ProductRepo productRepo;
 
-    @GetMapping("/public/product")
-    public ResponseEntity<Object> getAllProducts(){
-        return ResponseEntity.ok(productRepo.findAll());
-    }
+//    @GetMapping("/public/product")
+//    public ResponseEntity<Object> getAllProducts(){
+//        return ResponseEntity.ok(productRepo.findAll());
+//    }
 
-    @PostMapping("/admin/saveproduct")
-    public ResponseEntity<Object> signUp(@RequestBody ReqRes productRequest){
-        Product productToSave = new Product();
-        productToSave.setName(productRequest.getName());
-        return ResponseEntity.ok(productRepo.save(productToSave));
-    }
+//    @PostMapping("/admin/saveproduct")
+//    public ResponseEntity<Object> signUp(@RequestBody ReqRes productRequest){
+//        Product productToSave = new Product();
+//        productToSave.setName(productRequest.getName());
+//        return ResponseEntity.ok(productRepo.save(productToSave));
+//    }
 
 
     @GetMapping("/user/alone")

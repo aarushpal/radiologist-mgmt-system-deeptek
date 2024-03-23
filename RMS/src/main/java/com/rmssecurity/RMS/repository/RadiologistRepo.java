@@ -1,15 +1,19 @@
 package com.rmssecurity.RMS.repository;
 
-import com.rmssecurity.RMS.entity.Product;
 import com.rmssecurity.RMS.entity.Radiologist;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 
-public interface RadiologistRepo extends JpaRepository<Radiologist, Long> {
+@Repository
+public interface RadiologistRepo extends JpaRepository<Radiologist, Long> , JpaSpecificationExecutor<Radiologist> {
+
+//    public List<Radiologist> findByRadiologistName(String name);
 
     @Query("select r from Radiologist r where r.name like :key")
     List<Radiologist> searchByName(@Param("key") String name);

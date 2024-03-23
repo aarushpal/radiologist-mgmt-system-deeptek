@@ -10,21 +10,22 @@ public class Radiologist {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     private String name;
     private String email;
     private String username;
     private String type;
     private String contactNumber;
+    private boolean dicomAttached=false;
 
     public Radiologist() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -66,5 +67,12 @@ public class Radiologist {
 
     public void setContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
+    }
+
+    public boolean isDicomAttached() {
+        return dicomAttached;
+    }
+    public void setDicomAttached(boolean dicomAttached) {
+        this.dicomAttached = dicomAttached;
     }
 }

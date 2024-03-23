@@ -3,7 +3,6 @@ package com.rmssecurity.RMS.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.rmssecurity.RMS.entity.OurUsers;
-import com.rmssecurity.RMS.entity.Product;
 import com.rmssecurity.RMS.entity.Radiologist;
 import lombok.Data;
 
@@ -24,7 +23,7 @@ public class ReqRes {
     private String email;
     private String role;
     private String password;
-    private List<Product> products;
+
     private List<Radiologist> radiologists;
     private OurUsers ourUsers;
 }
